@@ -12,13 +12,13 @@
     "lint": "oxlint ."
   },
   "dependencies": {
-    "@orpc/client": "^1.14.3",
-    "@orpc/contract": "^1.14.3",
-    "@orpc/openapi-client": "^1.14.3",
+    "@orpc/client": "catalog:",
+    "@orpc/contract": "catalog:",
+    "@orpc/openapi-client": "catalog:",
     "@repo/api-contract": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "typescript": "^6.0.3"
+    "typescript": "catalog:"
   }
 }

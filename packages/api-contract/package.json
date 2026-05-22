@@ -12,11 +12,11 @@
     "lint": "oxlint ."
   },
   "dependencies": {
-    "@orpc/contract": "^1.14.3",
-    "zod": "^4.4.3"
+    "@orpc/contract": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "typescript": "^6.0.3"
+    "typescript": "catalog:"
   }
 }
