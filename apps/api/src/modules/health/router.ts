@@ -1,7 +1,4 @@
-import { contract } from "@repo/api-contract";
-import { implement } from "@orpc/server";
-
-const os = implement(contract);
+import { os } from "../../orpc/implementer";
 
 export const healthRouter = {
   check: os.health.check.handler(() => ({

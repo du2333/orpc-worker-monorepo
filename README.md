@@ -63,6 +63,16 @@ Spec: http://localhost:8787/openapi.json
 VITE_API_URL=http://localhost:8787/api
 ```
 
+`apps/api/wrangler.jsonc` includes a non-secret example Worker var:
+
+```jsonc
+"vars": {
+  "EXAMPLE_GREETING_SUFFIX": "from the API Worker env"
+}
+```
+
+Run `bun run cf-typegen` in `apps/api` after changing Worker vars or bindings so `worker-configuration.d.ts` stays in sync. For local-only overrides, copy `apps/api/.dev.vars.example` to `apps/api/.dev.vars`.
+
 ## Quality Commands
 
 ```sh

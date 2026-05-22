@@ -1,11 +1,8 @@
-import { contract } from "@repo/api-contract";
-import { implement } from "@orpc/server";
-
-const os = implement(contract);
+import { os } from "../../orpc/implementer";
 
 export const exampleRouter = {
-  greeting: os.example.greeting.handler(({ input }) => ({
-    message: `Hello, ${input.name}!`,
+  greeting: os.example.greeting.handler(({ context, input }) => ({
+    message: `Hello, ${input.name} ${context.config.EXAMPLE_GREETING_SUFFIX}!`,
     requestedAt: new Date().toISOString(),
   })),
 };

@@ -20,6 +20,7 @@
         "@orpc/server": "^1.14.3",
         "@orpc/zod": "^1.14.3",
         "@repo/api-contract": "workspace:*",
+        "zod": "catalog:",
       },
       "devDependencies": {
         "@repo/typescript-config": "workspace:*",
@@ -73,7 +74,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@orpc/contract": "^1.14.3",
-        "zod": "^4.4.3",
+        "zod": "catalog:",
       },
       "devDependencies": {
         "@repo/typescript-config": "workspace:*",
@@ -87,6 +88,7 @@
   },
   "catalog": {
     "typescript": "^6.0.3",
+    "zod": "^4.4.3",
   },
   "packages": {
     "@app/api": ["@app/api@workspace:apps/api"],

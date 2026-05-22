@@ -1,3 +1,6 @@
+import { getServerEnv } from "./env";
+import type { ServerEnv } from "./env";
+
 export type AuthContext = {
   userId: string;
   sessionId?: string;
@@ -9,6 +12,7 @@ export type ApiContext = {
   request: Request;
   headers: Headers;
   executionContext: ExecutionContext;
+  config: ServerEnv;
   auth: AuthContext | null;
 };
 
@@ -22,6 +26,7 @@ export function createContext(
     request,
     headers: request.headers,
     executionContext,
+    config: getServerEnv(env),
     auth: null,
   };
 }

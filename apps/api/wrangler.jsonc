@@ -7,4 +7,7 @@
   "observability": {
     "enabled": true,
   },
+  "vars": {
+    "EXAMPLE_GREETING_SUFFIX": "from the API Worker env",
+  },
 }
