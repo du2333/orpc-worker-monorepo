@@ -13,6 +13,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@orpc/client": "^1.14.3",
     "@orpc/tanstack-query": "^1.14.3",
     "@repo/api-client": "workspace:*",
     "@tanstack/react-devtools": "0.10.5",
