@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { GreetingCard } from "@/features/example/components/greeting-card";
+import { ViewerCard } from "@/features/example/components/viewer-card";
 import { HealthPanel } from "@/features/health/components/health-panel";
 import { healthQueryOptions } from "@/features/health/hooks/use-health";
 import { greetingQueryOptions } from "@/features/example/hooks/use-example";
@@ -28,6 +29,7 @@ function Home() {
       <section className="grid gap-4 sm:grid-cols-2">
         <HealthPanel />
         <GreetingCard />
+        <ViewerCard />
       </section>
     </div>
   );
