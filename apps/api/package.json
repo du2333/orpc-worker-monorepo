@@ -12,15 +12,15 @@
     "cf-typegen": "wrangler types --config wrangler.jsonc"
   },
   "dependencies": {
-    "@orpc/json-schema": "catalog:",
-    "@orpc/openapi": "catalog:",
-    "@orpc/server": "catalog:",
-    "@orpc/zod": "catalog:",
+    "@orpc/json-schema": "^1.14.3",
+    "@orpc/openapi": "^1.14.3",
+    "@orpc/server": "^1.14.3",
+    "@orpc/zod": "^1.14.3",
     "@repo/api-contract": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "typescript": "catalog:",
-    "wrangler": "catalog:"
+    "wrangler": "^4.93.0"
   }
 }
