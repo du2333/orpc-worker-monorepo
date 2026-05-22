@@ -14,7 +14,7 @@
     "@app/web#build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".output/**", ".tanstack/**", ".vinxi/**"]
+      "outputs": ["dist/**", ".tanstack/**"]
     },
     "typecheck": {
       "dependsOn": ["^typecheck", "generate"]
