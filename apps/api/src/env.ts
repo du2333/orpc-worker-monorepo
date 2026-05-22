@@ -7,5 +7,17 @@ const serverEnvSchema = z.object({
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 export function getServerEnv(env: Env): ServerEnv {
-  return serverEnvSchema.parse(env);
+  const result = serverEnvSchema.safeParse(env);
+
+  if (result.success) {
+    return result.data;
+  }
+
+  throw new Error(
+    [
+      "Invalid API environment.",
+      "Check apps/api/.dev.vars for local development or your deployed Worker vars/secrets.",
+      JSON.stringify(z.treeifyError(result.error), null, 2),
+    ].join("\n"),
+  );
 }
