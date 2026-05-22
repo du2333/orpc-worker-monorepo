@@ -19,7 +19,6 @@
     "@repo/api-contract": "workspace:*"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260521.0",
     "@repo/typescript-config": "workspace:*",
     "typescript": "^6.0.3",
     "wrangler": "^4.93.0"

@@ -1,5 +1,3 @@
-export type ApiEnv = Record<string, never>;
-
 export type AuthContext = {
   userId: string;
   sessionId?: string;
@@ -7,7 +5,7 @@ export type AuthContext = {
 };
 
 export type ApiContext = {
-  env: ApiEnv;
+  env: Env;
   request: Request;
   headers: Headers;
   executionContext: ExecutionContext;
@@ -16,7 +14,7 @@ export type ApiContext = {
 
 export function createContext(
   request: Request,
-  env: ApiEnv,
+  env: Env,
   executionContext: ExecutionContext,
 ): ApiContext {
   return {

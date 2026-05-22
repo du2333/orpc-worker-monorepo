@@ -1,5 +1,4 @@
 import { createContext } from "./context";
-import type { ApiEnv } from "./context";
 import { openAPIHandler } from "./orpc/handler";
 
 export default {
@@ -22,4 +21,4 @@ export default {
 
     return response ?? new Response("Not Found", { status: 404 });
   },
-} satisfies ExportedHandler<ApiEnv>;
+} satisfies ExportedHandler<Env>;
