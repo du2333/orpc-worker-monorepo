@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { greetingQueryOptions } from "../hooks/use-example";
+import { GreetingForm } from "./greeting-form";
 
 export function GreetingCard() {
   const greeting = useQuery(greetingQueryOptions);
@@ -13,6 +15,10 @@ export function GreetingCard() {
           ? `Requested at ${greeting.data.requestedAt}`
           : "Waiting for the API response."}
       </p>
+
+      <hr className="my-3 border-neutral-200" />
+
+      <GreetingForm />
     </article>
   );
 }

@@ -19,6 +19,7 @@
         "@orpc/openapi": "^1.14.3",
         "@orpc/server": "^1.14.3",
         "@orpc/zod": "^1.14.3",
+        "@repo/api-contract": "workspace:*",
         "zod": "catalog:",
       },
       "devDependencies": {
