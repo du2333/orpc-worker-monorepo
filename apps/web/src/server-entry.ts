@@ -12,8 +12,19 @@ declare module "@tanstack/react-start" {
 }
 
 export default {
-  fetch(request, env, executionContext) {
-    return appHandler.fetch(request, {
+  async fetch(request, env, executionContext) {
+    const url = new URL(request.url);
+
+    if (
+      url.pathname === "/api" ||
+      url.pathname.startsWith("/api/") ||
+      url.pathname === "/docs" ||
+      url.pathname === "/openapi.json"
+    ) {
+      return env.API.fetch(request);
+    }
+
+    return await appHandler.fetch(request, {
       context: {
         env,
         executionContext,

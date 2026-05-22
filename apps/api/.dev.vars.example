@@ -1,4 +1,1 @@
-EXAMPLE_GREETING_SUFFIX=from local .dev.vars
-
-# Add API-only local secrets here later.
-# This scaffold intentionally does not choose auth or database providers yet.
+EXAMPLE_GREETING_SUFFIX=from here
