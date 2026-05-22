@@ -1,0 +1,27 @@
+{
+  "name": "orpc-worker-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "dev:api": "turbo run dev --filter=@app/api",
+    "dev:web": "turbo run dev --filter=@app/web",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "format": "oxfmt . '!apps/web/src/routeTree.gen.ts'",
+    "format:check": "oxfmt --check . '!apps/web/src/routeTree.gen.ts'",
+    "check": "bun run lint && bun run format:check && bun run typecheck"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0",
+    "turbo": "^2.9.14",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "bun@1.3.12"
+}

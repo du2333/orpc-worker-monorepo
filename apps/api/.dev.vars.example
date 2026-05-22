@@ -1,0 +1,2 @@
+# Add API-only local secrets and bindings here.
+# This scaffold intentionally does not choose auth or database providers yet.

@@ -1,0 +1,27 @@
+{
+  "name": "@app/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.jsonc --port 8787",
+    "deploy": "wrangler deploy --config wrangler.jsonc",
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "oxlint .",
+    "cf-typegen": "wrangler types --config wrangler.jsonc"
+  },
+  "dependencies": {
+    "@orpc/json-schema": "^1.14.3",
+    "@orpc/openapi": "^1.14.3",
+    "@orpc/server": "^1.14.3",
+    "@orpc/zod": "^1.14.3",
+    "@repo/api-contract": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260521.0",
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.93.0"
+  }
+}

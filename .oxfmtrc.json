@@ -1,0 +1,11 @@
+{
+  "ignorePatterns": [
+    "node_modules",
+    ".turbo",
+    "dist",
+    ".output",
+    ".tanstack",
+    ".vinxi",
+    "src/routeTree.gen.ts"
+  ]
+}
