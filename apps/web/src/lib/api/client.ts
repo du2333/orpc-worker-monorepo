@@ -20,7 +20,7 @@ const getApiClient = createIsomorphicFn()
   })
   .client(() =>
     createApiClient({
-      url: "/api",
+      url: `${window.location.origin}/api`,
     }),
   );
 
