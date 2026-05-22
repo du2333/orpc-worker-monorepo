@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./router": "./src/orpc/router.ts"
+  },
   "scripts": {
     "dev": "wrangler dev --config wrangler.jsonc --port 8787",
     "deploy": "wrangler deploy --config wrangler.jsonc",
@@ -16,7 +19,6 @@
     "@orpc/openapi": "^1.14.3",
     "@orpc/server": "^1.14.3",
     "@orpc/zod": "^1.14.3",
-    "@repo/api-contract": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {

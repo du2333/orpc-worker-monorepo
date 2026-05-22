@@ -1,0 +1,48 @@
+{
+  "health": {
+    "check": {
+      "~orpc": {
+        "errorMap": {},
+        "meta": {},
+        "route": {
+          "method": "GET",
+          "path": "/health",
+          "summary": "Check API health",
+          "tags": [
+            "Health"
+          ]
+        }
+      }
+    }
+  },
+  "example": {
+    "greeting": {
+      "~orpc": {
+        "errorMap": {},
+        "meta": {},
+        "route": {
+          "method": "POST",
+          "path": "/example/greeting",
+          "summary": "Create an example greeting",
+          "tags": [
+            "Example"
+          ]
+        }
+      }
+    },
+    "viewer": {
+      "~orpc": {
+        "errorMap": {},
+        "meta": {},
+        "route": {
+          "method": "GET",
+          "path": "/example/viewer",
+          "summary": "Return the authenticated example viewer",
+          "tags": [
+            "Example"
+          ]
+        }
+      }
+    }
+  }
+}

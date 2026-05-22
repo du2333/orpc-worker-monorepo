@@ -7,6 +7,7 @@
     ".tanstack",
     ".vinxi",
     "**/routeTree.gen.ts",
-    "**/worker-configuration.d.ts"
+    "**/worker-configuration.d.ts",
+    "**/contract.generated.json"
   ]
 }

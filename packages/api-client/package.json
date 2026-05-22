@@ -18,6 +18,7 @@
     "@repo/api-contract": "workspace:*"
   },
   "devDependencies": {
+    "@orpc/server": "^1.14.3",
     "@repo/typescript-config": "workspace:*",
     "typescript": "catalog:"
   }

@@ -1,7 +1,8 @@
 import { createORPCClient } from "@orpc/client";
-import type { ContractRouterClient } from "@orpc/contract";
+import type { JsonifiedClient } from "@orpc/openapi-client";
 import { OpenAPILink } from "@orpc/openapi-client/fetch";
-import { contract } from "@repo/api-contract";
+import type { RouterClient } from "@orpc/server";
+import { contract, type AppRouter } from "@repo/api-contract";
 
 type ApiHeaders = Headers | Record<string, string>;
 type HeaderValue = ApiHeaders | Promise<ApiHeaders>;
@@ -12,7 +13,7 @@ export type CreateApiClientOptions = {
   fetch?: typeof globalThis.fetch;
 };
 
-export type ApiClient = ContractRouterClient<typeof contract>;
+export type ApiClient = JsonifiedClient<RouterClient<AppRouter>>;
 
 export function createApiClient(options: CreateApiClientOptions): ApiClient {
   const link = new OpenAPILink(contract, {
@@ -27,5 +28,5 @@ export function createApiClient(options: CreateApiClientOptions): ApiClient {
     fetch: options.fetch,
   });
 
-  return createORPCClient(link);
+  return createORPCClient<ApiClient>(link);
 }

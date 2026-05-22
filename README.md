@@ -1,6 +1,6 @@
 # oRPC Worker Monorepo
 
-Independent scaffold for a contract-first oRPC API on Cloudflare Workers with a TanStack Start web client.
+Independent scaffold for a router-first oRPC API on Cloudflare Workers with a TanStack Start web client.
 
 ## Shape
 
@@ -10,12 +10,12 @@ apps/
   web/  TanStack Start web app
 
 packages/
-  api-contract/       shared oRPC contract and schemas
+  api-contract/       generated minified oRPC contract artifact and router type export
   api-client/         thin OpenAPI client factory
   typescript-config/  shared TypeScript settings
 ```
 
-The TypeScript source of truth is `@repo/api-contract`. OpenAPI is the HTTP and documentation boundary for the Worker API, not the internal TypeScript codegen source.
+The TypeScript source of truth is `@app/api`. `@repo/api-contract` contains the generated, minified client contract artifact plus a type-only `AppRouter` export. Frontends should never runtime import the API router implementation.
 
 ## Decisions
 
@@ -23,7 +23,8 @@ The TypeScript source of truth is `@repo/api-contract`. OpenAPI is the HTTP and 
 - `@app/api` exposes `/api/*`, `/docs`, and `/openapi.json`.
 - `@app/web` calls the API over HTTP for both browser and SSR.
 - `@repo/api-client` stays runtime-neutral: apps inject URL, headers, and fetch behavior.
-- Auth is scaffold-ready only. No provider, session model, token storage, or database is selected.
+- Auth is scaffold-ready only. `@app/api` owns `authProcedure` and `authMiddleware`; typed auth errors stay precise to the procedures that use them.
+- `@repo/api-contract` runs `bun run generate` to refresh `src/contract.generated.json`. Turbo wires this before downstream build and typecheck tasks.
 - D1 is a likely future data layer, but this scaffold intentionally does not add D1 or Drizzle yet.
 - No mobile app and no test suite in this first pass.
 
@@ -70,6 +71,12 @@ cp apps/api/.dev.vars.example apps/api/.dev.vars
 ```
 
 Run `bun run cf-typegen` in `apps/api` after changing Worker bindings in `wrangler.jsonc` so `worker-configuration.d.ts` stays in sync. Local `.dev.vars` values are parsed at runtime by `apps/api/src/env.ts`.
+
+Regenerate the client contract artifact after changing API routes:
+
+```sh
+bun --filter @repo/api-contract generate
+```
 
 ## Quality Commands
 

@@ -27,11 +27,11 @@ function Home() {
   return (
     <main className="app-shell">
       <section className="panel">
-        <p className="eyebrow">Contract-first API boundary</p>
+        <p className="eyebrow">Router-first API boundary</p>
         <h1>oRPC Worker Monorepo</h1>
         <p className="summary">
-          TanStack Start is calling an independent Cloudflare Worker API over HTTP through a shared
-          oRPC contract and a thin client package.
+          TanStack Start is calling an independent Cloudflare Worker API over HTTP through a
+          generated oRPC contract artifact and a thin client package.
         </p>
       </section>
 
