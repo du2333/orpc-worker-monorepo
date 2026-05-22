@@ -1,3 +1,3 @@
 export { contract } from "./contract";
 export type { ApiContract } from "./contract";
-export type { GreetingInput, GreetingOutput } from "./schemas/example";
+export type { GreetingInput, GreetingOutput, ViewerOutput } from "./schemas/example";

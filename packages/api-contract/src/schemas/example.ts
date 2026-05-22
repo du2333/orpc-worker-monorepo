@@ -9,5 +9,12 @@ export const greetingOutputSchema = z.object({
   requestedAt: z.string(),
 });
 
+export const viewerOutputSchema = z.object({
+  userId: z.string(),
+  sessionId: z.string().optional(),
+  scopes: z.array(z.string()),
+});
+
 export type GreetingInput = z.infer<typeof greetingInputSchema>;
 export type GreetingOutput = z.infer<typeof greetingOutputSchema>;
+export type ViewerOutput = z.infer<typeof viewerOutputSchema>;

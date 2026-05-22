@@ -16,6 +16,14 @@ export type ApiContext = {
   auth: AuthContext | null;
 };
 
+function getFakeAuthContext(): AuthContext {
+  return {
+    userId: "demo-user",
+    sessionId: "demo-session",
+    scopes: ["example:read"],
+  };
+}
+
 export function createContext(
   request: Request,
   env: Env,
@@ -27,6 +35,6 @@ export function createContext(
     headers: request.headers,
     executionContext,
     config: getServerEnv(env),
-    auth: null,
+    auth: getFakeAuthContext(),
   };
 }

@@ -1,6 +1,6 @@
 import { oc } from "@orpc/contract";
 
-import { greetingInputSchema, greetingOutputSchema } from "../schemas/example";
+import { greetingInputSchema, greetingOutputSchema, viewerOutputSchema } from "../schemas/example";
 
 export const exampleContract = {
   greeting: oc
@@ -12,4 +12,18 @@ export const exampleContract = {
     })
     .input(greetingInputSchema)
     .output(greetingOutputSchema),
+  viewer: oc
+    .route({
+      method: "GET",
+      path: "/example/viewer",
+      summary: "Return the authenticated example viewer",
+      tags: ["Example"],
+    })
+    .errors({
+      UNAUTHORIZED: {
+        status: 401,
+        message: "Authentication is required.",
+      },
+    })
+    .output(viewerOutputSchema),
 };
