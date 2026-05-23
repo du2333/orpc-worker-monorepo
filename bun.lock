@@ -19,13 +19,12 @@
         "@orpc/openapi": "^1.14.3",
         "@orpc/server": "^1.14.3",
         "@orpc/zod": "^1.14.3",
-        "@repo/api-contract": "workspace:*",
         "zod": "catalog:",
       },
       "devDependencies": {
         "@repo/typescript-config": "workspace:*",
         "typescript": "catalog:",
-        "wrangler": "^4.93.0",
+        "wrangler": "catalog:",
       },
     },
     "apps/web": {
@@ -63,7 +62,7 @@
         "@vitejs/plugin-react": "^6.0.2",
         "typescript": "catalog:",
         "vite": "^8.0.13",
-        "wrangler": "^4.93.0",
+        "wrangler": "catalog:",
       },
     },
     "packages/api-client": {
@@ -102,6 +101,7 @@
   "catalog": {
     "@types/node": "^22.19.19",
     "typescript": "^6.0.3",
+    "wrangler": "^4.93.0",
     "zod": "^4.4.3",
   },
   "packages": {

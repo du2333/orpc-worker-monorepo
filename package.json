@@ -9,6 +9,7 @@
     "catalog": {
       "@types/node": "^22.19.19",
       "typescript": "^6.0.3",
+      "wrangler": "^4.93.0",
       "zod": "^4.4.3"
     }
   },
