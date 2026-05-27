@@ -1,3 +1,4 @@
+import { createDb } from "./db/client";
 import { getServerEnv } from "./env";
 import type { ApiContext, AuthContext } from "./orpc/context";
 
@@ -20,5 +21,6 @@ export function createContext(
     executionContext,
     config: getServerEnv(env),
     auth: getFakeAuthContext(),
+    db: createDb(env.DB),
   };
 }

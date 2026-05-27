@@ -1,3 +1,4 @@
+import type { AppDb } from "../db/client";
 import type { ServerEnv } from "../env";
 
 export type AuthContext = {
@@ -17,4 +18,5 @@ export type ApiContext = {
   executionContext: ApiExecutionContext;
   config: ServerEnv;
   auth: AuthContext | null;
+  db: AppDb;
 };
