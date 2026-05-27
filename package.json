@@ -19,6 +19,7 @@
     "dev": "turbo run dev",
     "dev:api": "turbo run dev --filter=@app/api",
     "dev:web": "turbo run dev --filter=@app/web",
+    "dev:mobile": "turbo run dev --filter=@app/mobile",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
     "format": "oxfmt",
