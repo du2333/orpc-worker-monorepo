@@ -7,7 +7,7 @@
     "./router": "./src/orpc/router.ts"
   },
   "scripts": {
-    "dev": "wrangler dev --config wrangler.jsonc --port 8787",
+    "dev": "wrangler dev --config wrangler.jsonc --ip 0.0.0.0 --port 8787",
     "deploy": "wrangler deploy --config wrangler.jsonc",
     "build": "tsc -p tsconfig.json --noEmit",
     "typecheck": "tsc -p tsconfig.json --noEmit",

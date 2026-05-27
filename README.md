@@ -31,7 +31,7 @@ During SSR, the web Worker proxies API requests via Cloudflare service binding. 
 
 | Layer    | Technology                                     |
 | -------- | ---------------------------------------------- |
-| Runtime  | Cloudflare Workers                         |
+| Runtime  | Cloudflare Workers                             |
 | API      | oRPC (server, client, contract), Zod, OpenAPI  |
 | Frontend | TanStack Start, React Router, React Query      |
 | Styling  | TailwindCSS v4, tw-animate-css, tailwind-merge |
