@@ -3,13 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { GreetingCard } from "@/features/example/components/greeting-card";
 import { HealthPanel } from "@/features/health/components/health-panel";
 import { healthQueryOptions } from "@/features/health/hooks/use-health";
-import { greetingQueryOptions } from "@/features/example/hooks/use-example";
+import { greetingsQueryOptions } from "@/features/example/hooks/use-example";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {
     await Promise.all([
       context.queryClient.ensureQueryData(healthQueryOptions),
-      context.queryClient.ensureQueryData(greetingQueryOptions),
+      context.queryClient.ensureQueryData(greetingsQueryOptions),
     ]);
   },
   component: Home,

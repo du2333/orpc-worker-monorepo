@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 
-import { useGreetingMutation } from "@/features/example/hooks/use-example";
+import { greetingsQueryOptions, useGreetingMutation } from "@/features/example/hooks/use-example";
 import { healthQueryOptions } from "@/features/health/hooks/use-health";
 import { env } from "@/lib/env";
 
@@ -10,9 +10,10 @@ export default function Index() {
   const [name, setName] = useState("Worker");
   const health = useQuery(healthQueryOptions);
   const greeting = useGreetingMutation();
+  const greetings = useQuery(greetingsQueryOptions);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} style={styles.screen}>
       <View style={styles.section}>
         <Text style={styles.label}>API URL</Text>
         <Text style={styles.muted}>{env.EXPO_PUBLIC_API_URL}</Text>
@@ -67,18 +68,41 @@ export default function Index() {
             {greeting.error instanceof Error ? greeting.error.message : "Greeting failed."}
           </Text>
         ) : null}
+
+        <View style={styles.list}>
+          <Text style={styles.subtitle}>Recent greetings</Text>
+          {greetings.isPending ? (
+            <Text style={styles.muted}>Loading greetings.</Text>
+          ) : greetings.isError ? (
+            <Text style={styles.error}>Could not load greetings.</Text>
+          ) : greetings.data.greetings.length === 0 ? (
+            <Text style={styles.muted}>No greetings saved yet.</Text>
+          ) : (
+            greetings.data.greetings.map((recentGreeting) => (
+              <View key={recentGreeting.id} style={styles.listItem}>
+                <Text style={styles.listItemTitle}>{recentGreeting.message}</Text>
+                <Text style={styles.muted}>
+                  {recentGreeting.name} at {recentGreeting.createdAt}
+                </Text>
+              </View>
+            ))
+          )}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
+    backgroundColor: "#f7f7f8",
+  },
+  container: {
     gap: 24,
     justifyContent: "center",
+    minHeight: "100%",
     padding: 24,
-    backgroundColor: "#f7f7f8",
   },
   section: {
     gap: 12,
@@ -90,6 +114,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
+    fontWeight: "700",
+    color: "#111827",
+  },
+  subtitle: {
+    fontSize: 16,
     fontWeight: "700",
     color: "#111827",
   },
@@ -153,5 +182,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
     color: "#374151",
+  },
+  list: {
+    gap: 10,
+    paddingTop: 4,
+  },
+  listItem: {
+    gap: 4,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    borderRadius: 8,
+    padding: 12,
+    backgroundColor: "#ffffff",
+  },
+  listItemTitle: {
+    fontSize: 15,
+    fontWeight: "700",
+    color: "#111827",
   },
 });

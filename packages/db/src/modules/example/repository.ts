@@ -1,4 +1,7 @@
-import { exampleGreetings, type AppDb } from "@repo/db";
+import { desc } from "drizzle-orm";
+
+import type { AppDb } from "../../client";
+import { exampleGreetings } from "../../schema";
 
 export type ExampleGreetingRecord = typeof exampleGreetings.$inferSelect;
 
@@ -14,6 +17,13 @@ export function createExampleRepository(db: AppDb) {
       }
 
       return greeting;
+    },
+    async listGreetings(limit: number): Promise<ExampleGreetingRecord[]> {
+      return db
+        .select()
+        .from(exampleGreetings)
+        .orderBy(desc(exampleGreetings.createdAt))
+        .limit(limit);
     },
   };
 }

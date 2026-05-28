@@ -1,7 +1,8 @@
+import type { ExampleRepository } from "@repo/db/example";
+
 import { err, ok, type Result } from "../../shared/result";
 import type { ExampleError } from "./errors";
-import type { ExampleRepository } from "./repository";
-import type { GreetingInput, GreetingOutput } from "./schema";
+import type { GreetingInput, GreetingOutput, GreetingsInput, GreetingsOutput } from "./schema";
 
 export type CreateExampleServiceOptions = {
   greetingSuffix: string;
@@ -28,6 +29,18 @@ export function createExampleService({ greetingSuffix, repository }: CreateExamp
         message: greeting.message,
         requestedAt: greeting.createdAt.toISOString(),
       });
+    },
+    async listGreetings(input: GreetingsInput): Promise<GreetingsOutput> {
+      const greetings = await repository.listGreetings(input?.limit ?? 10);
+
+      return {
+        greetings: greetings.map((greeting) => ({
+          id: greeting.id,
+          name: greeting.name,
+          message: greeting.message,
+          createdAt: greeting.createdAt.toISOString(),
+        })),
+      };
     },
   };
 }

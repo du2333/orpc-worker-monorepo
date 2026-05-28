@@ -16,6 +16,20 @@
     }
   },
   "example": {
+    "greetings": {
+      "~orpc": {
+        "errorMap": {},
+        "meta": {},
+        "route": {
+          "method": "GET",
+          "path": "/example/greetings",
+          "summary": "List recent example greetings",
+          "tags": [
+            "Example"
+          ]
+        }
+      }
+    },
     "greeting": {
       "~orpc": {
         "errorMap": {},

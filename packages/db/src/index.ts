@@ -1,3 +1,2 @@
 export { createDb } from "./client";
 export type { AppDb } from "./client";
-export * from "./schema";

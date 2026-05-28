@@ -1,11 +1,35 @@
+import { createExampleRepository } from "@repo/db/example";
+
 import { authProcedure, publicProcedure } from "../../orpc/procedure";
 import { assertNever } from "../../shared/assert";
 import { exampleErrorDefinitions } from "./errors";
-import { createExampleRepository } from "./repository";
-import { greetingInputSchema, greetingOutputSchema, viewerOutputSchema } from "./schema";
+import {
+  greetingInputSchema,
+  greetingOutputSchema,
+  greetingsInputSchema,
+  greetingsOutputSchema,
+  viewerOutputSchema,
+} from "./schema";
 import { createExampleService } from "./service";
 
 export const exampleRouter = {
+  greetings: publicProcedure
+    .route({
+      method: "GET",
+      path: "/example/greetings",
+      summary: "List recent example greetings",
+      tags: ["Example"],
+    })
+    .input(greetingsInputSchema)
+    .output(greetingsOutputSchema)
+    .handler(async ({ context, input }) => {
+      const service = createExampleService({
+        greetingSuffix: context.config.EXAMPLE_GREETING_SUFFIX,
+        repository: createExampleRepository(context.db),
+      });
+
+      return service.listGreetings(input);
+    }),
   greeting: publicProcedure
     .route({
       method: "POST",
