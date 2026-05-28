@@ -1,6 +1,13 @@
 import { z } from "zod";
 
+const optionalNonEmptyString = z
+  .string()
+  .trim()
+  .transform((value) => value || undefined)
+  .optional();
+
 export const serverEnvSchema = z.object({
+  APP_NAME: optionalNonEmptyString,
   BETTER_AUTH_SECRET: z.string().min(32),
   BETTER_AUTH_TRUSTED_ORIGINS: z.string().transform((value) =>
     value

@@ -6,15 +6,18 @@ import type { ServerEnv } from "../env";
 import { createAuthDatabaseAdapter, createSchemaOnlyAuthDatabaseAdapter } from "./database-adapter";
 
 type CreateAuthOptionsInput = {
+  appName?: string;
   baseURL: string;
   database: BetterAuthOptions["database"];
   secret: string;
   trustedOrigins?: string[];
 };
 
-export function createBaseAuthOptions() {
+const defaultAppName = "oRPC Worker Monorepo";
+
+export function createBaseAuthOptions({ appName = defaultAppName }: { appName?: string } = {}) {
   return {
-    appName: "oRPC Worker Monorepo",
+    appName,
     emailAndPassword: {
       enabled: true,
     },
@@ -23,13 +26,14 @@ export function createBaseAuthOptions() {
 }
 
 export function createAuthOptions({
+  appName,
   baseURL,
   database,
   secret,
   trustedOrigins,
 }: CreateAuthOptionsInput) {
   return {
-    ...createBaseAuthOptions(),
+    ...createBaseAuthOptions({ appName }),
     baseURL,
     database,
     secret,
@@ -39,6 +43,7 @@ export function createAuthOptions({
 
 export function createRuntimeAuthOptions({ config, db }: { config: ServerEnv; db: AppDb }) {
   return createAuthOptions({
+    appName: config.APP_NAME,
     baseURL: config.BETTER_AUTH_URL,
     database: createAuthDatabaseAdapter(db),
     secret: config.BETTER_AUTH_SECRET,
