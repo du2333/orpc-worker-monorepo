@@ -1,4 +1,4 @@
-import { createDb } from "./db/client";
+import { createDb } from "@repo/db";
 import { getServerEnv } from "./env";
 import type { ApiContext, AuthContext } from "./orpc/context";
 

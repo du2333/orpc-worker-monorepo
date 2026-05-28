@@ -1,4 +1,4 @@
-import type { AppDb } from "../db/client";
+import type { AppDb } from "@repo/db";
 import type { ServerEnv } from "../env";
 
 export type AuthContext = {

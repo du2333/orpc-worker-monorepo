@@ -13,21 +13,18 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "oxlint .",
     "cf-typegen": "wrangler types --config wrangler.jsonc",
-    "db:generate": "drizzle-kit generate --config drizzle.config.ts",
-    "db:migrate:local": "wrangler d1 migrations apply DB --local --config wrangler.jsonc",
-    "db:studio": "drizzle-kit studio --config drizzle.config.ts"
+    "db:migrate:local": "wrangler d1 migrations apply DB --local --config wrangler.jsonc"
   },
   "dependencies": {
     "@orpc/json-schema": "^1.14.3",
     "@orpc/openapi": "^1.14.3",
     "@orpc/server": "^1.14.3",
     "@orpc/zod": "^1.14.3",
-    "drizzle-orm": "^0.45.2",
+    "@repo/db": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "drizzle-kit": "^0.31.10",
     "typescript": "catalog:",
     "wrangler": "catalog:"
   }

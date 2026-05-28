@@ -6,6 +6,7 @@
     ".output",
     ".tanstack",
     ".vinxi",
+    "**/drizzle/migrations/**",
     "**/routeTree.gen.ts",
     "**/worker-configuration.d.ts",
     "**/contract.generated.json"

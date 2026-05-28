@@ -5,6 +5,7 @@ export const greetingInputSchema = z.object({
 });
 
 export const greetingOutputSchema = z.object({
+  id: z.string(),
   message: z.string(),
   requestedAt: z.string(),
 });
