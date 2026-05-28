@@ -1,5 +1,5 @@
 import { err, ok, type Result } from "../../shared/result";
-import { exampleError, type ExampleError } from "./errors";
+import type { ExampleError } from "./errors";
 import type { ExampleRepository } from "./repository";
 import type { GreetingInput, GreetingOutput } from "./schema";
 
@@ -12,7 +12,7 @@ export function createExampleService({ greetingSuffix, repository }: CreateExamp
   return {
     async createGreeting(input: GreetingInput): Promise<Result<GreetingOutput, ExampleError>> {
       if (input.name.length < 3) {
-        return err(exampleError("NAME_TOO_SHORT"));
+        return err({ code: "NAME_TOO_SHORT" });
       }
 
       const message = `Hello, ${input.name} ${greetingSuffix}!`;

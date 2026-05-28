@@ -12,7 +12,3 @@ export type ExampleErrorCode = keyof typeof exampleErrorDefinitions;
 export type ExampleError = {
   code: ExampleErrorCode;
 };
-
-export function exampleError<const TCode extends ExampleErrorCode>(code: TCode): { code: TCode } {
-  return { code };
-}
