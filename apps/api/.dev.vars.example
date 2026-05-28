@@ -1,1 +1,4 @@
+BETTER_AUTH_SECRET=dev-only-better-auth-secret-change-me-please
+BETTER_AUTH_TRUSTED_ORIGINS=http://localhost:3000,orpc-worker-monorepo://
+BETTER_AUTH_URL=http://localhost:8787/api/auth
 EXAMPLE_GREETING_SUFFIX=from here

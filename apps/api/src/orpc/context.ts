@@ -1,11 +1,6 @@
 import type { AppDb } from "@repo/db";
+import type { AppAuth, SessionWithUser } from "../auth/config";
 import type { ServerEnv } from "../env";
-
-export type AuthContext = {
-  userId: string;
-  sessionId?: string;
-  scopes: string[];
-};
 
 export type ApiExecutionContext = {
   waitUntil(promise: Promise<unknown>): void;
@@ -17,6 +12,10 @@ export type ApiContext = {
   headers: Headers;
   executionContext: ApiExecutionContext;
   config: ServerEnv;
-  auth: AuthContext | null;
+  auth: AppAuth;
   db: AppDb;
+};
+
+export type AuthedApiContext = ApiContext & {
+  authSession: SessionWithUser;
 };

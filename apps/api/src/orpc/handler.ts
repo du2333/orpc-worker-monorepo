@@ -34,8 +34,6 @@ export const openAPIHandler = new OpenAPIHandler(router, {
       schemaConverters: [schemaConverter],
     }),
     new OpenAPIReferencePlugin({
-      docsPath: "/docs",
-      specPath: "/openapi.json",
       schemaConverters: [schemaConverter],
       specGenerateOptions: {
         info: {

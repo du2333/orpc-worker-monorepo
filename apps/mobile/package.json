@@ -9,10 +9,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@better-auth/expo": "catalog:",
     "@expo/ui": "~56.0.14",
     "@orpc/tanstack-query": "catalog:",
     "@repo/api-client": "workspace:*",
     "@tanstack/react-query": "catalog:",
+    "better-auth": "catalog:",
     "expo": "~56.0.5",
     "expo-constants": "~56.0.16",
     "expo-device": "~56.0.4",
@@ -22,6 +24,7 @@
     "expo-linking": "~56.0.12",
     "expo-network": "~56.0.4",
     "expo-router": "~56.2.7",
+    "expo-secure-store": "~56.0.4",
     "expo-splash-screen": "~56.0.10",
     "expo-status-bar": "~56.0.4",
     "expo-symbols": "~56.0.5",

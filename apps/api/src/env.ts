@@ -1,6 +1,14 @@
 import { z } from "zod";
 
 export const serverEnvSchema = z.object({
+  BETTER_AUTH_SECRET: z.string().min(32),
+  BETTER_AUTH_TRUSTED_ORIGINS: z.string().transform((value) =>
+    value
+      .split(",")
+      .map((origin) => origin.trim())
+      .filter(Boolean),
+  ),
+  BETTER_AUTH_URL: z.url(),
   EXAMPLE_GREETING_SUFFIX: z.string().min(1),
 });
 

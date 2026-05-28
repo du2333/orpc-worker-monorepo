@@ -6,12 +6,8 @@ export default {
     const context = createContext(request, env, executionContext);
     const pathname = new URL(request.url).pathname;
 
-    if (pathname === "/docs" || pathname === "/openapi.json") {
-      const { response } = await openAPIHandler.handle(request, {
-        context,
-      });
-
-      return response ?? new Response("Not Found", { status: 404 });
+    if (pathname === "/api/auth" || pathname.startsWith("/api/auth/")) {
+      return context.auth.handler(request);
     }
 
     const { response } = await openAPIHandler.handle(request, {

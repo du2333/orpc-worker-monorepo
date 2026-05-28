@@ -1,26 +1,22 @@
 import { createDb } from "@repo/db";
+import { createAuth } from "./auth/config";
 import { getServerEnv } from "./env";
-import type { ApiContext, AuthContext } from "./orpc/context";
-
-function getFakeAuthContext(): AuthContext {
-  return {
-    userId: "demo-user",
-    sessionId: "demo-session",
-    scopes: ["example:read"],
-  };
-}
+import type { ApiContext } from "./orpc/context";
 
 export function createContext(
   request: Request,
   env: Env,
   executionContext: ExecutionContext<unknown>,
 ): ApiContext {
+  const config = getServerEnv(env);
+  const db = createDb(env.DB);
+
   return {
     request,
     headers: request.headers,
     executionContext,
-    config: getServerEnv(env),
-    auth: getFakeAuthContext(),
-    db: createDb(env.DB),
+    config,
+    auth: createAuth({ config, db }),
+    db,
   };
 }

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { AuthPanel } from "@/features/auth/components/auth-panel";
 import { GreetingCard } from "@/features/example/components/greeting-card";
 import { HealthPanel } from "@/features/health/components/health-panel";
 import { healthQueryOptions } from "@/features/health/hooks/use-health";
@@ -27,6 +28,7 @@ function Home() {
 
       <section className="grid gap-4 sm:grid-cols-2">
         <HealthPanel />
+        <AuthPanel />
         <GreetingCard />
       </section>
     </div>

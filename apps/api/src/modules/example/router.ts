@@ -1,8 +1,7 @@
-import { createExampleRepository } from "@repo/db/example";
-
 import { authProcedure, publicProcedure } from "../../orpc/procedure";
 import { assertNever } from "../../shared/assert";
 import { exampleErrorDefinitions } from "./errors";
+import { createExampleRuntime } from "./runtime";
 import {
   greetingInputSchema,
   greetingOutputSchema,
@@ -10,7 +9,6 @@ import {
   greetingsOutputSchema,
   viewerOutputSchema,
 } from "./schema";
-import { createExampleService } from "./service";
 
 export const exampleRouter = {
   greetings: publicProcedure
@@ -23,12 +21,9 @@ export const exampleRouter = {
     .input(greetingsInputSchema)
     .output(greetingsOutputSchema)
     .handler(async ({ context, input }) => {
-      const service = createExampleService({
-        greetingSuffix: context.config.EXAMPLE_GREETING_SUFFIX,
-        repository: createExampleRepository(context.db),
-      });
+      const example = createExampleRuntime(context);
 
-      return service.listGreetings(input);
+      return example.listGreetings(input);
     }),
   greeting: publicProcedure
     .route({
@@ -41,11 +36,8 @@ export const exampleRouter = {
     .input(greetingInputSchema)
     .output(greetingOutputSchema)
     .handler(async ({ context, input, errors }) => {
-      const service = createExampleService({
-        greetingSuffix: context.config.EXAMPLE_GREETING_SUFFIX,
-        repository: createExampleRepository(context.db),
-      });
-      const result = await service.createGreeting(input);
+      const example = createExampleRuntime(context);
+      const result = await example.createGreeting(input);
 
       if (result.error) {
         switch (result.error.code) {
@@ -67,8 +59,8 @@ export const exampleRouter = {
     })
     .output(viewerOutputSchema)
     .handler(({ context }) => ({
-      userId: context.auth.userId,
-      sessionId: context.auth.sessionId,
-      scopes: context.auth.scopes,
+      userId: context.authSession.user.id,
+      sessionId: context.authSession.session.id,
+      scopes: [],
     })),
 };

@@ -3,20 +3,136 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-
 import { useQuery } from "@tanstack/react-query";
 
 import { greetingsQueryOptions, useGreetingMutation } from "@/features/example/hooks/use-example";
+import { authClient } from "@/lib/auth/client";
 import { healthQueryOptions } from "@/features/health/hooks/use-health";
 import { env } from "@/lib/env";
 
 export default function Index() {
   const [name, setName] = useState("Worker");
+  const [authEmail, setAuthEmail] = useState("demo@example.com");
+  const [authName, setAuthName] = useState("Demo User");
+  const [authPassword, setAuthPassword] = useState("password1234");
+  const [authStatus, setAuthStatus] = useState<string | null>(null);
+  const session = authClient.useSession();
   const health = useQuery(healthQueryOptions);
   const greeting = useGreetingMutation();
   const greetings = useQuery(greetingsQueryOptions);
+
+  async function signIn() {
+    setAuthStatus(null);
+    const result = await authClient.signIn.email({
+      email: authEmail,
+      password: authPassword,
+    });
+
+    if (result.error) {
+      setAuthStatus(result.error.message ?? "Sign in failed.");
+      return;
+    }
+
+    setAuthStatus("Signed in.");
+    await session.refetch();
+  }
+
+  async function signUp() {
+    setAuthStatus(null);
+    const result = await authClient.signUp.email({
+      email: authEmail,
+      name: authName,
+      password: authPassword,
+    });
+
+    if (result.error) {
+      setAuthStatus(result.error.message ?? "Sign up failed.");
+      return;
+    }
+
+    setAuthStatus("Account created.");
+    await session.refetch();
+  }
+
+  async function signOut() {
+    setAuthStatus(null);
+    const result = await authClient.signOut();
+
+    if (result.error) {
+      setAuthStatus(result.error.message ?? "Sign out failed.");
+      return;
+    }
+
+    setAuthStatus("Signed out.");
+    await session.refetch();
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container} style={styles.screen}>
       <View style={styles.section}>
         <Text style={styles.label}>API URL</Text>
         <Text style={styles.muted}>{env.EXPO_PUBLIC_API_URL}</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.title}>Auth</Text>
+        <Text style={styles.body}>
+          {session.isPending
+            ? "Checking session..."
+            : session.data
+              ? `Signed in as ${session.data.user.email}`
+              : "Signed out."}
+        </Text>
+
+        {session.data ? (
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => void signOut()}
+            style={styles.primaryButton}
+          >
+            <Text style={styles.primaryButtonText}>Sign out</Text>
+          </Pressable>
+        ) : (
+          <>
+            <TextInput
+              autoCapitalize="words"
+              onChangeText={setAuthName}
+              placeholder="Name"
+              style={styles.input}
+              value={authName}
+            />
+            <TextInput
+              autoCapitalize="none"
+              keyboardType="email-address"
+              onChangeText={setAuthEmail}
+              placeholder="Email"
+              style={styles.input}
+              value={authEmail}
+            />
+            <TextInput
+              onChangeText={setAuthPassword}
+              placeholder="Password"
+              secureTextEntry
+              style={styles.input}
+              value={authPassword}
+            />
+            <View style={styles.row}>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => void signIn()}
+                style={styles.primaryButton}
+              >
+                <Text style={styles.primaryButtonText}>Sign in</Text>
+              </Pressable>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => void signUp()}
+                style={styles.secondaryButton}
+              >
+                <Text style={styles.secondaryButtonText}>Sign up</Text>
+              </Pressable>
+            </View>
+          </>
+        )}
+
+        {authStatus ? <Text style={styles.muted}>{authStatus}</Text> : null}
       </View>
 
       <View style={styles.section}>

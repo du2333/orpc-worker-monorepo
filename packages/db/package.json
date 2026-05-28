@@ -12,6 +12,7 @@
     "build": "tsc -p tsconfig.json --noEmit",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "oxlint .",
+    "auth:schema": "bunx auth generate --config ../../apps/api/src/auth/cli.ts --output src/schema/auth.ts --yes",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
     "db:studio": "drizzle-kit studio --config drizzle.config.ts"
   },

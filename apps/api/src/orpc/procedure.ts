@@ -13,13 +13,17 @@ export const authProcedure = baseProcedure
     },
   })
   .use(async ({ context, errors, next }) => {
-    if (!context.auth) {
+    const session = await context.auth.api.getSession({
+      headers: context.headers,
+    });
+
+    if (!session) {
       throw errors.UNAUTHORIZED();
     }
 
     return next({
       context: {
-        auth: context.auth,
+        authSession: session,
       },
     });
   });
