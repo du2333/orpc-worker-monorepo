@@ -46,9 +46,8 @@ Better Auth server config lives in `apps/api/src/auth`, using the request-scoped
 | Runtime  | Cloudflare Workers                             |
 | API      | oRPC (server, client, contract), Zod, OpenAPI  |
 | Database | Cloudflare D1, Drizzle ORM                     |
-| Web      | TanStack Start, React Router, React Query      |
-| Mobile   | Expo, React Native, React Query                |
-| Styling  | TailwindCSS v4, tw-animate-css, tailwind-merge |
+| Web      | TanStack Start, React                          |
+| Mobile   | Expo, React Native                             |
 | Monorepo | Turborepo, Bun workspaces                      |
 | Deploy   | Wrangler                                       |
 
@@ -59,8 +58,9 @@ bun install
 
 # Copy local env files
 cp apps/api/.dev.vars.example apps/api/.dev.vars
+cp apps/mobile/.env.example apps/mobile/.env
 
-# Run both apps
+# Run devs
 bun dev
 ```
 
