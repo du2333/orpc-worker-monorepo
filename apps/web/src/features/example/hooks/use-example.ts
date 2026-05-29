@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { handleORPCError } from "@repo/api-client";
 import { toast } from "sonner";
 
 import { orpc } from "@/lib/api/orpc";
-import { handleORPCError } from "@/lib/api/error-handler";
 
 export const greetingsQueryOptions = orpc.example.greetings.queryOptions({
   input: { limit: 10 },

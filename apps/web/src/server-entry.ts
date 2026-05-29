@@ -15,12 +15,7 @@ export default {
   async fetch(request, env, executionContext) {
     const url = new URL(request.url);
 
-    if (
-      url.pathname === "/api" ||
-      url.pathname.startsWith("/api/") ||
-      url.pathname === "/docs" ||
-      url.pathname === "/openapi.json"
-    ) {
+    if (url.pathname === "/api" || url.pathname.startsWith("/api/")) {
       return env.API.fetch(request);
     }
 

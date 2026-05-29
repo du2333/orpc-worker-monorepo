@@ -5,7 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./example": "./src/modules/example/index.ts",
+    "./*": "./src/modules/*/index.ts",
     "./schema": "./src/schema/index.ts"
   },
   "scripts": {

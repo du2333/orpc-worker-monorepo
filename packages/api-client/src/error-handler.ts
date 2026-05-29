@@ -20,5 +20,6 @@ export function handleORPCError<TError>(
     handlers[error.code]?.(error);
     return;
   }
+
   fallback(error as Exclude<TError, DefinedORPCError<TError>>);
 }
