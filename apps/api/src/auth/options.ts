@@ -10,6 +10,7 @@ type CreateAuthOptionsInput = {
   baseURL: string;
   database: BetterAuthOptions["database"];
   secret: string;
+  socialProviders?: BetterAuthOptions["socialProviders"];
   trustedOrigins?: string[];
 };
 
@@ -30,6 +31,7 @@ export function createAuthOptions({
   baseURL,
   database,
   secret,
+  socialProviders,
   trustedOrigins,
 }: CreateAuthOptionsInput) {
   return {
@@ -37,6 +39,7 @@ export function createAuthOptions({
     baseURL,
     database,
     secret,
+    socialProviders,
     trustedOrigins,
   } satisfies BetterAuthOptions;
 }
@@ -47,6 +50,12 @@ export function createRuntimeAuthOptions({ config, db }: { config: ServerEnv; db
     baseURL: config.BETTER_AUTH_URL,
     database: createAuthDatabaseAdapter(db),
     secret: config.BETTER_AUTH_SECRET,
+    socialProviders: {
+      github: {
+        clientId: config.GITHUB_CLIENT_ID,
+        clientSecret: config.GITHUB_CLIENT_SECRET,
+      },
+    },
     trustedOrigins: config.BETTER_AUTH_TRUSTED_ORIGINS,
   });
 }

@@ -18,6 +18,22 @@ export default function Index() {
   const greeting = useGreetingMutation();
   const greetings = useQuery(greetingsQueryOptions);
 
+  async function signInWithGitHub() {
+    setAuthStatus("Opening GitHub.");
+    const result = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/",
+    });
+
+    if (result.error) {
+      setAuthStatus(result.error.message ?? "GitHub sign in failed.");
+      return;
+    }
+
+    setAuthStatus("GitHub sign in finished.");
+    await session.refetch();
+  }
+
   async function signIn() {
     setAuthStatus(null);
     const result = await authClient.signIn.email({
@@ -91,6 +107,13 @@ export default function Index() {
           </Pressable>
         ) : (
           <>
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => void signInWithGitHub()}
+              style={styles.githubButton}
+            >
+              <Text style={styles.githubButtonText}>Sign in with GitHub</Text>
+            </Pressable>
             <TextInput
               autoCapitalize="words"
               onChangeText={setAuthName}
@@ -278,6 +301,19 @@ const styles = StyleSheet.create({
   },
   disabledButton: {
     opacity: 0.6,
+  },
+  githubButton: {
+    minHeight: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    backgroundColor: "#111827",
+    paddingHorizontal: 16,
+  },
+  githubButtonText: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#ffffff",
   },
   primaryButtonText: {
     fontSize: 16,
