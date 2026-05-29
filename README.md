@@ -37,7 +37,7 @@ Better Auth server config lives in `apps/api/src/auth`, using the request-scoped
 - **Isomorphic API client** — SSR uses service binding; browser uses HTTP, both through the same client interface
 - **Shared DB package** — Drizzle schema, migrations, and persistence helpers stay out of API application code
 - **Expo smoke path** — Mobile calls the same generated oRPC client contract as web
-- **Better Auth** — Email/password auth on the API Worker, web client cookies, and Expo secure storage
+- **Better Auth** — Email/password and GitHub OAuth on the API Worker, web client cookies, and Expo secure storage
 
 ## Stack
 
