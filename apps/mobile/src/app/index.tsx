@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { greetingsQueryOptions, useGreetingMutation } from "@/features/example/hooks/use-example";
 import { authClient } from "@/lib/auth/client";
+import { signInWithGitHub } from "@/lib/auth/oauth";
 import { healthQueryOptions } from "@/features/health/hooks/use-health";
 import { env } from "@/lib/env";
 
@@ -18,19 +19,16 @@ export default function Index() {
   const greeting = useGreetingMutation();
   const greetings = useQuery(greetingsQueryOptions);
 
-  async function signInWithGitHub() {
+  async function handleGitHubSignIn() {
     setAuthStatus("Opening GitHub.");
-    const result = await authClient.signIn.social({
-      provider: "github",
-      callbackURL: "/",
-    });
+    const result = await signInWithGitHub();
 
-    if (result.error) {
-      setAuthStatus(result.error.message ?? "GitHub sign in failed.");
+    if (!result.ok) {
+      setAuthStatus(result.message);
       return;
     }
 
-    setAuthStatus("GitHub sign in finished.");
+    setAuthStatus(result.message);
     await session.refetch();
   }
 
@@ -109,7 +107,7 @@ export default function Index() {
           <>
             <Pressable
               accessibilityRole="button"
-              onPress={() => void signInWithGitHub()}
+              onPress={() => void handleGitHubSignIn()}
               style={styles.githubButton}
             >
               <Text style={styles.githubButtonText}>Sign in with GitHub</Text>

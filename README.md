@@ -41,15 +41,15 @@ Better Auth server config lives in `apps/api/src/auth`, using the request-scoped
 
 ## Stack
 
-| Layer    | Technology                                     |
-| -------- | ---------------------------------------------- |
-| Runtime  | Cloudflare Workers                             |
-| API      | oRPC (server, client, contract), Zod, OpenAPI  |
-| Database | Cloudflare D1, Drizzle ORM                     |
-| Web      | TanStack Start, React                          |
-| Mobile   | Expo, React Native                             |
-| Monorepo | Turborepo, Bun workspaces                      |
-| Deploy   | Wrangler                                       |
+| Layer    | Technology                                    |
+| -------- | --------------------------------------------- |
+| Runtime  | Cloudflare Workers                            |
+| API      | oRPC (server, client, contract), Zod, OpenAPI |
+| Database | Cloudflare D1, Drizzle ORM                    |
+| Web      | TanStack Start, React                         |
+| Mobile   | Expo, React Native                            |
+| Monorepo | Turborepo, Bun workspaces                     |
+| Deploy   | Wrangler                                      |
 
 ## Getting Started
 
