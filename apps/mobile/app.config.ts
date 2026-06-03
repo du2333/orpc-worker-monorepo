@@ -11,11 +11,11 @@ const config: ExpoConfig = {
   scheme: mobileAppConfig.scheme,
   userInterfaceStyle: "automatic",
   ios: {
-    bundleIdentifier: "com.anonymous.mobile",
+    bundleIdentifier: "com.test.orpc-worker.dev",
     icon: "./assets/expo.icon",
   },
   android: {
-    package: "com.anonymous.mobile",
+    package: "com.test.orpc-worker.dev",
     adaptiveIcon: {
       backgroundColor: "#E6F4FE",
       foregroundImage: "./assets/images/android-icon-foreground.png",
