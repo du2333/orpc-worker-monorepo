@@ -11,6 +11,7 @@ const config: ExpoConfig = {
   scheme: mobileAppConfig.scheme,
   userInterfaceStyle: "automatic",
   ios: {
+    bundleIdentifier: "com.anonymous.mobile",
     icon: "./assets/expo.icon",
   },
   android: {
